@@ -1,0 +1,40 @@
+{
+  "user": [
+    {
+      "name": "Jack",
+      "city": "Bengal",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Rahul",
+      "city": "kolkata"
+    },
+    {
+      "id": 3,
+      "name": "Amar",
+      "city": "Delhi"
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "title": "Book Title 1",
+      "author": "Book Author 1",
+      "type": "Book",
+      "details": {
+        "numberOfPages": 100
+      }
+    },
+    {
+      "id": 2,
+      "title": "Film Title 1",
+      "author": "Film Author 1",
+      "type": "Film",
+      "details": {
+        "runningTime": 200,
+        "closingCreditsTime": 100
+      }
+    }
+  ]
+}
