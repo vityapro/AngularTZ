@@ -1,8 +1,7 @@
-export interface Item{
-  id: number;
-  title: string;
-  author: string;
-  type: ItemType;
+import { StoreItem } from "../../store/models/item.model";
+
+export interface Item extends StoreItem{
+  author: ItemAuthor;
   details: {[key: string]: any}
 }
 
@@ -22,4 +21,9 @@ export interface ItemFilm extends Item{
     runningTime: number
     closingCreditsTime: number
   }
+}
+
+export interface ItemAuthor {
+  id: number,
+  name: string,
 }

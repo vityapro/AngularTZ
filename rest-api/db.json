@@ -1,26 +1,9 @@
 {
-  "user": [
-    {
-      "name": "Jack",
-      "city": "Bengal",
-      "id": 1
-    },
-    {
-      "id": 2,
-      "name": "Rahul",
-      "city": "kolkata"
-    },
-    {
-      "id": 3,
-      "name": "Amar",
-      "city": "Delhi"
-    }
-  ],
-  "items": [
+  "item": [
     {
       "id": 1,
       "title": "Book Title 1",
-      "author": "Book Author 1",
+      "authorId": 2,
       "type": "Book",
       "details": {
         "numberOfPages": 100
@@ -29,12 +12,36 @@
     {
       "id": 2,
       "title": "Film Title 1",
-      "author": "Film Author 1",
+      "authorId": 2,
       "type": "Film",
       "details": {
         "runningTime": 200,
         "closingCreditsTime": 100
       }
+    },
+    {
+      "id": 3,
+      "title": "Film Title 1",
+      "authorId": 2,
+      "type": "Film",
+      "details": {
+        "runningTime": 200,
+        "closingCreditsTime": 100
+      }
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "name": "Author 1"
+    },
+    {
+      "id": 2,
+      "name": "Author 2"
+    },
+    {
+      "id": 3,
+      "name": "Author 3"
     }
   ]
 }

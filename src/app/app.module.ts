@@ -17,6 +17,15 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ItemDetailsComponent } from './pages/item-details/item-details.component';
 import { NavigationService } from "./services/navigation";
+import { CardModule } from 'primeng/card';
+import { AuthorComponent } from './pages/author/author.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import {DropdownModule} from 'primeng/dropdown';
+import { StoreModule } from '@ngrx/store';
+import { itemReducer } from './store/reducers/item.reducer';
+import { EffectsModule } from "@ngrx/effects";
+import { ItemEffects } from "./services/item/item-effects.service";
 
 @NgModule({
   declarations: [
@@ -25,6 +34,7 @@ import { NavigationService } from "./services/navigation";
     TableComponent,
     FormComponent,
     ItemDetailsComponent,
+    AuthorComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,11 +43,19 @@ import { NavigationService } from "./services/navigation";
     HttpClientModule,
     TabMenuModule,
     TableModule,
+    CardModule,
     ConfirmDialogModule,
     BrowserAnimationsModule,
     CheckboxModule,
     FormsModule,
     ReactiveFormsModule,
+    InputNumberModule,
+    InputTextModule,
+    DropdownModule,
+    StoreModule.forRoot({
+      items: itemReducer
+    }),
+    EffectsModule.forRoot([ItemEffects])
   ],
   providers: [
     ConfirmationService,

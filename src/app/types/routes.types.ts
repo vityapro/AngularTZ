@@ -3,4 +3,5 @@ export enum RoutesPath {
     table = 'table',
     form = 'form',
     details = 'item',
+    author = 'author',
 }
