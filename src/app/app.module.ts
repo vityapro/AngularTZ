@@ -25,7 +25,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import { StoreModule } from '@ngrx/store';
 import { itemReducer } from './store/reducers/item.reducer';
 import { EffectsModule } from "@ngrx/effects";
-import { ItemEffects } from "./services/item/item-effects.service";
+import { ItemEffects } from "./services/item/item.effects";
 
 @NgModule({
   declarations: [

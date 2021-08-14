@@ -3,7 +3,7 @@ import { ItemService } from "./item.service";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ItemActionTypes } from "../../store/actions/item.actions";
 import { catchError, map, mergeMap } from "rxjs/operators";
-import { EMPTY } from "rxjs";
+import { EMPTY, Observable } from "rxjs";
 
 
 @Injectable()
@@ -16,6 +16,19 @@ export class ItemEffects {
           map(items => ({ type: ItemActionTypes.ITEMS_LOADED, _p: items })),
           catchError(() => EMPTY)
         ))
+    )
+  );
+
+  deleteItem$ = createEffect(() => this.actions$.pipe(
+      ofType(ItemActionTypes.ITEM_DELETE),
+      mergeMap<{ type: string, itemId: number }, Observable<any>>((value) => {
+          console.log(value);
+          return this.itemService.delete(value.itemId).pipe(
+            map(() => ({ type: ItemActionTypes.ITEM_DELETED, _p: {id: value.itemId} })),
+            catchError(() => EMPTY)
+          )
+        }
+      )
     )
   );
 
