@@ -26,6 +26,10 @@ import { StoreModule } from '@ngrx/store';
 import { itemReducer } from './store/reducers/item.reducer';
 import { EffectsModule } from "@ngrx/effects";
 import { ItemEffects } from "./services/item/item.effects";
+import { authorReducer } from "./store/reducers/authors.reducer";
+import { NavigationHistoryComponent } from './components/navigation-history/navigation-history.component';
+import { navigationReducer } from "./store/reducers/navigation.reducer";
+import { RippleModule } from "primeng/ripple";
 
 @NgModule({
   declarations: [
@@ -35,6 +39,7 @@ import { ItemEffects } from "./services/item/item.effects";
     FormComponent,
     ItemDetailsComponent,
     AuthorComponent,
+    NavigationHistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,9 +58,12 @@ import { ItemEffects } from "./services/item/item.effects";
     InputTextModule,
     DropdownModule,
     StoreModule.forRoot({
-      items: itemReducer
+      items: itemReducer,
+      authors: authorReducer,
+      navigationHistory: navigationReducer
     }),
-    EffectsModule.forRoot([ItemEffects])
+    EffectsModule.forRoot([ ItemEffects ]),
+    RippleModule
   ],
   providers: [
     ConfirmationService,

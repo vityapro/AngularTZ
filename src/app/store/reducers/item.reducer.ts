@@ -12,7 +12,7 @@ export const itemReducer = createReducer(
   }),
   on(itemDeleted, (state, data) => {
     console.log(state, data);
-    return state.filter( i => i.id !== data._p.id);
+    return state.filter( i => i.id !== data.id);
   }),
   on(itemsLoaded, (state, data) => {
     return data._p;

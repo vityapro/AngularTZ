@@ -1,0 +1,50 @@
+<p-tabMenu [model]="tabs" [activeItem]="activeTab"></p-tabMenu>
+<div class="p-d-flex p-mt-6 p-justify-center">
+  <p-card class="p-shadow-14">
+    <div class="p-fluid">
+      <form [formGroup]="form">
+        <div class="p-field">
+          <label for="integeronly" class="p-col-12">ID:</label>
+          <p-inputNumber formControlName="id" inputId="integeronly"></p-inputNumber>
+        </div>
+        <div class="p-field">
+          <label for="title" class="p-col-12">Title:</label>
+          <input id="title" type="text" aria-describedby="title-help" pInputText formControlName="title" />
+        </div>
+
+        <div class="p-field p-d-flex">
+          <div class="p-field p-d-flex p-flex-column" *ngIf="authors$ | async as authors">
+            <label for="title" >Author:</label>
+            <p-dropdown [required]="true" [options]="authors"
+                        placeholder="Select"
+                        optionLabel="name" optionValue="id" formControlName="author"></p-dropdown>
+          </div>
+
+          <div class="p-field p-d-flex p-flex-column p-ml-2">
+            <label for="title" >Type:</label>
+            <p-dropdown [required]="true" [options]="itemTypesOptions"
+                        placeholder="Select"
+                        formControlName="type"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="p-field" *ngIf="form.value.type === itemTypes.Book" [formGroupName]="'book'">
+          <label for="pageNumber" class="p-col-12">Number of Page:</label>
+          <p-inputNumber formControlName="numberOfPages" inputId="pageNumber"></p-inputNumber>
+        </div>
+
+        <div class="p-field p-d-flex" *ngIf="form.value.type === itemTypes.Film" [formGroupName]="'film'">
+          <div class="p-field p-d-flex p-flex-column">
+            <label for="runningTime" >Running Time:</label>
+            <p-inputNumber formControlName="runningTime" inputId="runningTime"></p-inputNumber>
+          </div>
+          <div class="p-field p-d-flex p-flex-column  p-ml-2">
+            <label for="closingCreditsTime">Closing Credits Time:</label>
+            <p-inputNumber formControlName="closingCreditsTime" inputId="closingCreditsTime"></p-inputNumber>
+          </div>
+        </div>
+      </form>
+      <p-button label="Add Item" (onClick)="addItem()"></p-button>
+    </div>
+  </p-card>
+</div>

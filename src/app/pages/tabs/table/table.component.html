@@ -1,0 +1,68 @@
+<p-tabMenu [model]="tabs" [activeItem]="activeTab"></p-tabMenu>
+<p-confirmDialog #cd [style]="{width: '450px'}">
+  <ng-template pTemplate="header">
+    <h3>Confirm Delete</h3>
+  </ng-template>
+  <ng-template pTemplate="footer" let-checked="check">
+    <div class="p-d-flex p-align-center p-justify-end">
+      <div class="p-field-checkbox p-mr-2 p-mb-0">
+        <p-checkbox #check [binary]="true" inputId="binary"></p-checkbox>
+        <label class="p-ml-2" for="binary">Yes I sure!</label>
+      </div>
+      <button type="button" pButton icon="pi pi-times"  label="Cancel" (click)="cd.reject()"></button>
+      <button type="button" pButton icon="pi pi-check" [disabled]="!check.checked" label="Ok" (click)="cd.accept()"></button>
+    </div>
+  </ng-template>
+</p-confirmDialog>
+
+<div class="p-grid" >
+  <div class="p-col-10">
+    <div *ngIf="items$ | async as items">
+      <p-table [value]="items">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="p-text-center">Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Type</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td class="p-text-center">
+              <button pButton pRipple type="button"
+                      [label]="item.id"
+                      (click)="goDetails(item.id)"
+                      class="p-button-text">
+              </button>
+            </td>
+            <td>{{item.title}}</td>
+            <td>
+              <button pButton pRipple type="button"
+                      [label]="item?.author?.name"
+                      (click)="goAuthor(item.authorId)"
+                      class="p-button-text">
+              </button>
+            </td>
+            <td>{{item.type}}</td>
+            <td>
+              <p-button icon="pi pi-trash"
+                        styleClass="p-button"
+                        (onClick)="confirmDelete(item.id)"
+              ></p-button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+      <span *ngIf="filmsCount$ | async as filmsCount">
+              There are {{filmsCount}} film{{ filmsCount > 1 ? 's' : ''}}
+      </span>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div class="p-col-2">
+    <app-navigation-history></app-navigation-history>
+  </div>
+</div>

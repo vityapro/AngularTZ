@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ItemService } from "./item.service";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ItemActionTypes } from "../../store/actions/item.actions";
+import { AuthorActionsTypes } from "../../store/actions/author.actions";
 import { catchError, map, mergeMap } from "rxjs/operators";
 import { EMPTY, Observable } from "rxjs";
 
@@ -14,6 +15,16 @@ export class ItemEffects {
       mergeMap(() => this.itemService.getAll()
         .pipe(
           map(items => ({ type: ItemActionTypes.ITEMS_LOADED, _p: items })),
+          catchError(() => EMPTY)
+        ))
+    )
+  );
+
+  loadAuthors$ = createEffect(() => this.actions$.pipe(
+      ofType(AuthorActionsTypes.AUTHORS_LOAD),
+      mergeMap(() => this.itemService.getAllAuthors()
+        .pipe(
+          map(items => ({ type: AuthorActionsTypes.AUTHORS_LOADED, _p: items })),
           catchError(() => EMPTY)
         ))
     )

@@ -6,6 +6,3 @@ export interface StoreItem {
   details: {[key: string]: any}
 }
 
-export interface ItemState {
-  counter: number;
-}

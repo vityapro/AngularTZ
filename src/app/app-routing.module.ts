@@ -5,6 +5,7 @@ import { HomeComponent } from "./pages/tabs/home/home.component";
 import { TableComponent } from "./pages/tabs/table/table.component";
 import { FormComponent } from "./pages/tabs/form/form.component";
 import { ItemDetailsComponent } from "./pages/item-details/item-details.component";
+import { AuthorComponent } from "./pages/author/author.component";
 
 const routes: Routes = [
   {
@@ -28,8 +29,12 @@ const routes: Routes = [
         component: FormComponent
       },
       {
-        path: RoutesPath.details,
+        path: `${RoutesPath.details}/:id`,
         component: ItemDetailsComponent
+      },
+      {
+        path: `${RoutesPath.author}/:id`,
+        component: AuthorComponent
       },
     ]
   }

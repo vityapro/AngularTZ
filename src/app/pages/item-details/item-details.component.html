@@ -1,0 +1,15 @@
+<p-button label="Go back" icon="pi pi-arrow-left" styleClass="p-button-lg" (click)="back()" ></p-button>
+<div class="p-d-flex p-mt-6 p-justify-center">
+  <p-card class="p-shadow-14" *ngIf="item$ | async as item">
+    <div class="p-grid">
+      <div class="p-col-6 p-text-right p-text-bold"><div class="box">ID:</div></div>
+      <div class="p-col-6 p-text-left"><div class="box">{{item.id}}</div></div>
+      <div class="p-col-6 p-text-right p-text-bold"><div class="box">Title:</div></div>
+      <div class="p-col-6 p-text-left"><div class="box">{{item.title}}</div></div>
+      <div class="p-col-6 p-text-right p-text-bold"><div class="box">Author:</div></div>
+      <div class="p-col-6 p-text-left"><div class="box">{{item?.author?.name}}</div></div>
+      <div class="p-col-6 p-text-right p-text-bold"><div class="box">Details:</div></div>
+      <div class="p-col-6 p-text-left"><div class="box">{{item.details | json}}</div></div>
+    </div>
+  </p-card>
+</div>

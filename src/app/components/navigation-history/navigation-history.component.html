@@ -1,0 +1,8 @@
+<p-card>
+  <h5 class="p-text-bold">Navigation History</h5>
+  <ul>
+    <li *ngFor="let item of items$ | async as items">
+      {{item.url}}
+    </li>
+  </ul>
+</p-card>
