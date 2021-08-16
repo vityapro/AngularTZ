@@ -18,25 +18,6 @@
         "runningTime": 200,
         "closingCreditsTime": 100
       }
-    },
-    {
-      "id": 3,
-      "title": "Film Title 2",
-      "authorId": 3,
-      "type": "Film",
-      "details": {
-        "runningTime": 200,
-        "closingCreditsTime": 100
-      }
-    },
-    {
-      "id": 4,
-      "title": "Book Title 2",
-      "authorId": 2,
-      "type": "Book",
-      "details": {
-        "numberOfPages": 100
-      }
     }
   ],
   "authors": [

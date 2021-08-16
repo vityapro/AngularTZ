@@ -47,7 +47,7 @@ export class TableComponent extends TabComponent implements OnInit {
   }
 
   deleteItem(itemId: number) {
-    this.store.dispatch(itemDelete({itemId}));
+    this.store.dispatch(itemDelete({id: itemId}));
   }
 
   goDetails(itemId: number) {

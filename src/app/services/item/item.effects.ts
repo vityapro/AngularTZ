@@ -5,6 +5,7 @@ import { ItemActionTypes } from "../../store/actions/item.actions";
 import { AuthorActionsTypes } from "../../store/actions/author.actions";
 import { catchError, map, mergeMap } from "rxjs/operators";
 import { EMPTY, Observable } from "rxjs";
+import { AddActionProps } from "../../store/models/item.model";
 
 
 @Injectable()
@@ -30,12 +31,24 @@ export class ItemEffects {
     )
   );
 
+  addItem$ = createEffect(() => this.actions$.pipe(
+      ofType(ItemActionTypes.ITEM_ADD),
+      mergeMap<AddActionProps , Observable<any>>((value) => {
+          return this.itemService.create(value._p).pipe(
+            map(() => ({...value, type: ItemActionTypes.ITEM_ADDED })),
+            catchError(() => EMPTY)
+          )
+        }
+      )
+    )
+  );
+
   deleteItem$ = createEffect(() => this.actions$.pipe(
       ofType(ItemActionTypes.ITEM_DELETE),
-      mergeMap<{ type: string, itemId: number }, Observable<any>>((value) => {
+      mergeMap<{ type: string, id: number }, Observable<any>>((value) => {
           console.log(value);
-          return this.itemService.delete(value.itemId).pipe(
-            map(() => ({ type: ItemActionTypes.ITEM_DELETED, _p: {id: value.itemId} })),
+          return this.itemService.delete(value.id).pipe(
+            map(() => ({ type: ItemActionTypes.ITEM_DELETED, _p: {id: value.id} })),
             catchError(() => EMPTY)
           )
         }

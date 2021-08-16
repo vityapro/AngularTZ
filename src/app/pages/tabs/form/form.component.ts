@@ -7,6 +7,8 @@ import { Store } from "@ngrx/store";
 import { AppState, selectAuthorsLoaded } from "../../../store/models/app-state.model";
 import { take } from "rxjs/operators";
 import { authorsLoad } from "../../../store/actions/author.actions";
+import { add } from "../../../store/actions/item.actions";
+import { AddActionProps, StoreItem } from "../../../store/models/item.model";
 
 @Component({
   selector: 'app-form',
@@ -39,7 +41,7 @@ export class FormComponent extends TabComponent implements OnInit {
     this.form = new FormGroup({
       id: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.minLength(7)]),
-      author: new FormControl('', [Validators.required]),
+      authorId: new FormControl('', [Validators.required]),
       type: new FormControl(this.itemTypesOptions[0], [Validators.required]),
       book: new FormGroup({
         numberOfPages: new FormControl('', ),
@@ -52,7 +54,20 @@ export class FormComponent extends TabComponent implements OnInit {
   }
 
   addItem(){
-    console.log(this.form);
+    let formValue = this.form.value;
+    let details;
+    let data: StoreItem;
+    if(this.form.value.type === ItemType.Film){
+      details = this.form.value.film;
+    } else {
+      details = this.form.value.book;
+    }
+    delete formValue.book;
+    delete formValue.film;
+    data = formValue;
+    data.details = details;
+    this.store.dispatch(add((new AddActionProps(data))));
+    this.form.reset();
   }
 
   typeValidation() {

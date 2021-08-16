@@ -17,7 +17,7 @@
             <label for="title" >Author:</label>
             <p-dropdown [required]="true" [options]="authors"
                         placeholder="Select"
-                        optionLabel="name" optionValue="id" formControlName="author"></p-dropdown>
+                        optionLabel="name" optionValue="id" formControlName="authorId"></p-dropdown>
           </div>
 
           <div class="p-field p-d-flex p-flex-column p-ml-2">
@@ -44,7 +44,7 @@
           </div>
         </div>
       </form>
-      <p-button label="Add Item" (onClick)="addItem()"></p-button>
+      <p-button label="Add Item" [disabled]="form.invalid" (onClick)="addItem()"></p-button>
     </div>
   </p-card>
 </div>
